@@ -121,16 +121,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 	}
 
 	Widget _pageViewBuilder(BuildContext context, int index){
-		/*return Stack(
-			children: [
-				Center(child: Text(_sections[index]['name']!),)
-			],
-		);*/
     return SizedBox(
       width: double.maxFinite,
       height: double.maxFinite,
-      child: Image(
-        image: AssetImage(_sections[index]['background_image']!),
+      child: Image.asset('assets/'+_sections[index]['background_image']!,
         fit: BoxFit.fill,
       ),
     );

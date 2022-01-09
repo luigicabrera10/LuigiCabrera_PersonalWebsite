@@ -24,7 +24,7 @@ class _TopBarNavigatorState extends State<TopBarNavigator> {
 	late int selectedIndex;
 
 	final TextStyle _normalStyle = const TextStyle(color: Colors.white70, fontSize: 20);
-	final TextStyle _selectedStyle = const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500);
+	final TextStyle _selectedStyle = const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600);
 	final Color _transparent = const Color.fromARGB(0, 0, 0, 0);
 
 	@override
