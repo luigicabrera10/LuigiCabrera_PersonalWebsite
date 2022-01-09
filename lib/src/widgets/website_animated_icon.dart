@@ -34,7 +34,7 @@ class _WebSiteIconState extends State<WebSiteIcon> with SingleTickerProviderStat
 
 				RotationTransition(
 					turns: Tween(begin: 0.0, end: 1.0,).animate(widget.controller),
-					child: Image(image: const AssetImage('assets/logoPageWeb.png'), width: widget.size,),
+					child: Image(image: const AssetImage('assets/logoPageWeb2.png'), width: widget.size,),
 				),
 
 				Row(

@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 
 import '../../Widgets/website_animated_icon.dart';
 import '../../widgets/home_top_bar_navigator.dart';
-import 'sections.dart';
+import 'sections/sections.dart';
 
 class HomePage extends StatefulWidget {
 	const HomePage({ Key? key }) : super(key: key);
@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 	final ScrollController _scrollController = ScrollController();
 
 	final List< Map<String, String> > _sections = getSections(); 
-	final double _webIconSize = 65;
+	final double _webIconSize = 67;
 	final double _webIconPadding = 17;
 
 	int _actualIndex = 0;
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 						child: Container(
 							padding: const EdgeInsets.only(top:20,bottom: 20),
 							width: double.maxFinite,
-							color: const Color.fromRGBO(0, 0, 0, 100),
+							color: const Color.fromRGBO(0, 0, 0, 130),
 							child: _createTopBarNavigator(),
 						),
 					),
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 										width: 11,
 										height: _actualIndex==index? 30:15,
 										decoration: BoxDecoration(
-											color: _actualIndex==index? Colors.green:Colors.blue,
+											color: _actualIndex==index? const Color.fromARGB(255, 66, 143, 206):const Color.fromARGB(255, 230, 230, 230),
 											borderRadius: BorderRadius.circular(5),
 										),
 										curve: Curves.fastOutSlowIn,
@@ -121,11 +121,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 	}
 
 	Widget _pageViewBuilder(BuildContext context, int index){
-		return Stack(
+		/*return Stack(
 			children: [
 				Center(child: Text(_sections[index]['name']!),)
 			],
-		);
+		);*/
+    return SizedBox(
+      width: double.maxFinite,
+      height: double.maxFinite,
+      child: Image(
+        image: AssetImage(_sections[index]['background_image']!),
+        fit: BoxFit.fill,
+      ),
+    );
 	}
 
 	void _scrollToIndex(int index){
