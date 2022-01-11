@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 						controller: _scrollController,
 						scrollDirection: Axis.vertical,
 						itemCount: _sections.length,
-						itemBuilder: (c,i) => const SizedBox(width: double.maxFinite,height: double.maxFinite,),
+						itemBuilder: (c,i) => const SizedBox(width: double.maxFinite, height: double.maxFinite,),
 					),
 
 					Positioned( // HomeTopBarNavigator
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 						child: Container(
 							padding: const EdgeInsets.only(top:20,bottom: 20),
 							width: double.maxFinite,
-							color: const Color.fromRGBO(0, 0, 0, 130),
+							color: const Color.fromARGB(165, 0, 0, 0),
 							child: _createTopBarNavigator(),
 						),
 					),
@@ -121,12 +121,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 	}
 
 	Widget _pageViewBuilder(BuildContext context, int index){
-    return SizedBox(
-      width: double.maxFinite,
-      height: double.maxFinite,
-      child: Image.asset('assets/'+_sections[index]['background_image']!,
-        fit: BoxFit.fill,
-      ),
+    return Stack(
+      children: [
+        SizedBox(width: double.maxFinite, height: double.maxFinite,
+          child: Image.asset('assets/'+_sections[index]['background_image']!,
+            fit: BoxFit.fill,),
+        ),
+        sectionConstructor(_sections[index]['name']!),
+      ],
     );
 	}
 
