@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/rendering.dart';
@@ -15,41 +16,25 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
 	
 	late AnimationController _controller;
-
 	final PageController _pageController = PageController();
-	final ScrollController _scrollController = ScrollController();
 
 	final List< Map<String, String> > _sections = getSections(); 
 	final double _webIconSize = 67;
 	final double _webIconPadding = 17;
 
+	bool pageIsScrolling = false;
 	int _actualIndex = 0;
 
 	@override
 	void initState() {
 		super.initState();
-
 		_controller = AnimationController(vsync: this);
-		_scrollController.addListener(() {
-			if (_actualIndex > 0 && _scrollController.position.userScrollDirection == ScrollDirection.forward){
-				_actualIndex --; // Up
-				animateLogoLeft(animationMilliseconds: 1000, controller: _controller);
-			}
-			else if (_actualIndex < _sections.length-1 && _scrollController.position.userScrollDirection == ScrollDirection.reverse){
-				_actualIndex ++; // Down
-				animateLogoRight(animationMilliseconds: 1000, controller: _controller);
-			}
-			
-			_scrollToIndex(_actualIndex);
-			setState(() {});
-		});
 	}
 
 	@override
 	void dispose() {
 		super.dispose();
 		_controller.dispose();
-		_scrollController.dispose();
 	}
 
 	@override
@@ -57,21 +42,22 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 		return Scaffold(
 			body: Stack(
 				children: [
+					
+					Listener( // to detect scroll
+						onPointerSignal: (pointerSignal) {
+							if (pointerSignal is PointerScrollEvent) { _onScroll(pointerSignal.scrollDelta.dy); }
+						},
+						child: PageView.builder(
+							controller: _pageController,
+							physics: const NeverScrollableScrollPhysics(),
 
-					PageView.builder(
-						controller: _pageController,
-						scrollDirection: Axis.vertical,
-						itemCount: _sections.length,
-						itemBuilder: _pageViewBuilder,
+							pageSnapping: true,
+							scrollDirection: Axis.vertical,
+							itemCount: _sections.length,
+							itemBuilder: _pageViewBuilder,
+						),
 					),
-
-					ListView.builder(
-						controller: _scrollController,
-						scrollDirection: Axis.vertical,
-						itemCount: _sections.length,
-						itemBuilder: (c,i) => const SizedBox(width: double.maxFinite, height: double.maxFinite,),
-					),
-
+					
 					Positioned( // HomeTopBarNavigator
 						top: 0,right: 0,left: 0,
 						child: Container(
@@ -122,19 +108,23 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
 	Widget _pageViewBuilder(BuildContext context, int index){
     return Stack(
+      alignment: AlignmentDirectional.center,
       children: [
-        SizedBox(width: double.maxFinite, height: double.maxFinite,
+        
+        SizedBox(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height,
           child: Image.asset('assets/'+_sections[index]['background_image']!,
             fit: BoxFit.fill,),
         ),
+
         sectionConstructor(_sections[index]['name']!),
+
       ],
     );
 	}
 
-	void _scrollToIndex(int index){
+	void _scrollToIndex(int index){ // Scroll????
 		_pageController.animateToPage(
-			index, duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn,
+			index, duration: const Duration(milliseconds: 750), curve: Curves.fastOutSlowIn,
 		);
 	}
 
@@ -159,5 +149,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 		_actualIndex = i; _scrollToIndex(_actualIndex);
 		setState(() {});
 	}
+
+
+	void _onScroll(double offset) {
+    if (pageIsScrolling == false) {
+      pageIsScrolling = true;
+      if (offset > 0 && _actualIndex < _sections.length-1) { animateScroll(_actualIndex+1); } 
+			else if (offset < 0 && _actualIndex > 0){ animateScroll(_actualIndex-1); }
+			pageIsScrolling = false;
+    }
+  }
+
 
 }

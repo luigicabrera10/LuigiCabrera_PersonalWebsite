@@ -19,8 +19,8 @@ class HomeSection extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.maxFinite,
-      height: double.maxFinite,
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: Padding(padding: const EdgeInsets.only(top: 75),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -33,8 +33,9 @@ class HomeSection extends StatelessWidget{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Text>[
                   Text("Hi", style: _styleWelcome), 
-                  Text('I am Luigi Cabrera', style: _styleWelcome,), 
-                  Text("Computer Science Student", style: _styleWelcomeSubtitle),
+                  Text('I\'m Luigi Cabrera', style: _styleWelcome,), 
+                  Text("Computer Science Student &", style: _styleWelcomeSubtitle),
+                  Text("AI Enthusiast", style: _styleWelcomeSubtitle),
                 ]
               ),
             ),
