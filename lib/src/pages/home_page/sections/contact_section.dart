@@ -25,8 +25,8 @@ class ContactSection extends StatelessWidget{
             ),
           ),
           decoration: BoxDecoration(
-            color: Color.fromARGB(159, 233, 233, 233),
-            borderRadius: BorderRadius.circular(10),
+            color: const Color.fromARGB(179, 233, 233, 233),
+            borderRadius: BorderRadius.circular(20),
           ),
         ),
 
@@ -43,7 +43,7 @@ class ContactSection extends StatelessWidget{
               link: 'https://github.com/luigicabrera10',
             ),
 
-            const SizedBox(width: 15,),
+            const SizedBox(width: 17,),
 
             SocialMediaButton( // Instagram
               color1: Colors.yellow,
@@ -52,7 +52,7 @@ class ContactSection extends StatelessWidget{
               link: 'https://www.instagram.com/luigi_pv/',
             ),
 
-            const SizedBox(width: 15,),
+            const SizedBox(width: 17,),
 
             SocialMediaButton( // Linkedin
               color1: Colors.blue,

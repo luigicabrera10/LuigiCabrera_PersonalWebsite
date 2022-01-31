@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luigicabrera_website/src/pages/home_page/sections/about_me_section.dart';
 
 import 'home_section.dart';
 import 'package:luigicabrera_website/src/pages/home_page/sections/contact_section.dart';
@@ -26,8 +27,7 @@ List<Map<String, String>> getSections() {
 
 Widget sectionConstructor(String name){
   if (name == 'Home') {return const HomeSection();}
-  if (name == 'About Me') {return HomeSection();}
-  if (name == 'Skills') {return HomeSection();}
-  if (name == 'Contact') {return const ContactSection();}
+  if (name == 'About Me') {return const AboutMeSection();}
+  if (name == 'Skills') {return const HomeSection();}
   return const ContactSection();
 }
