@@ -1,8 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/rendering.dart';
-
 import '../../Widgets/website_animated_icon.dart';
 import '../../widgets/home_top_bar_navigator.dart';
 import 'sections/sections.dart';
@@ -18,7 +16,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 	late AnimationController _controller;
 	final PageController _pageController = PageController();
 
-	final List< Map<String, String> > _sections = getSections(); 
+	final List<String> _sections = getSections(); 
 	final double _webIconSize = 67;
 	final double _webIconPadding = 17;
 
@@ -112,11 +110,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       children: [
         
         SizedBox(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height,
-          child: Image.asset('assets/'+_sections[index]['background_image']!,
-            fit: BoxFit.fill,),
+          child: Image.asset('assets/background.png',fit: BoxFit.fill,),
         ),
 
-        sectionConstructor(_sections[index]['name']!),
+        sectionConstructor(_sections[index]),
 
       ],
     );
@@ -139,7 +136,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
 	List<String> _getSectionsNames(){
 		List<String> list = [];
-		for (var element in _sections) {list.add(element['name']!);}
+		for (var element in _sections) {list.add(element);}
 		return list;
 	}
 

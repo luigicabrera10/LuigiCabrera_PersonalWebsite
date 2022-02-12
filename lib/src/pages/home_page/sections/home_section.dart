@@ -48,7 +48,7 @@ class HomeSection extends StatelessWidget{
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: Image.asset(
-                  'assets/myPicBlackWhite.png', 
+                  'assets/myPic.png', 
                   height: MediaQuery.of(context).size.height*0.7,
                 ),
               ),

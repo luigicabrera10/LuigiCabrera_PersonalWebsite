@@ -10,7 +10,10 @@ class ContactSection extends StatelessWidget{
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[ 
-        
+
+        const Text('Contact me', style: TextStyle(color: Colors.white, fontSize: 50, fontWeight: FontWeight.bold),),
+        const SizedBox(height: 55,),
+
         Container(
           child: Padding(
             padding: const EdgeInsets.all(27.5),
@@ -25,7 +28,7 @@ class ContactSection extends StatelessWidget{
             ),
           ),
           decoration: BoxDecoration(
-            color: const Color.fromARGB(179, 233, 233, 233),
+            color: const Color.fromARGB(190, 255, 255, 255),
             borderRadius: BorderRadius.circular(20),
           ),
         ),

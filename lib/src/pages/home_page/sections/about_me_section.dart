@@ -36,6 +36,7 @@ class AboutMeSection extends StatelessWidget {
         Card(
           elevation: 15,
           color: const Color.fromARGB(190, 255, 255, 255),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SizedBox(
@@ -48,52 +49,40 @@ class AboutMeSection extends StatelessWidget {
             ),
           ),
         ),
+        
+        //const SizedBox(height: 1,),
 
-        Column(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            
+
             DocumentButton(
-              name: Text('Resume', style: _styleButton),
-              link: 'resume.com',
-              icon: const FaIcon(FontAwesomeIcons.user, size: 40,),
+              name: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Text>[ Text('Professional', style: _styleButton), Text('Resume', style: _styleButton),],
+              ),
+              link: 'ProfesionalCurriculum.com',
+              icon: const FaIcon(FontAwesomeIcons.laptopCode, size: 40,),
             ),
 
-            const SizedBox(height: 20,),
+            const SizedBox(width: 40),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-
-                DocumentButton(
-                  name: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Text>[ Text('Professional', style: _styleButton), Text('Curriculm', style: _styleButton),],
-                  ),
-                  link: 'ProfesionalCurriculum.com',
-                  icon: const FaIcon(FontAwesomeIcons.laptopCode, size: 40,),
-                ),
-
-                const SizedBox(width: 20),
-
-                DocumentButton(
-                  name: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Text>[ Text('Sport', style: _styleButton,), Text('Curriculm', style: _styleButton),],
-                  ),
-                  link: 'SportCurriculum.com',
-                  icon: const FaIcon(FontAwesomeIcons.running, size: 40,),
-                ),
-
-              ],
+            DocumentButton(
+              name: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Text>[ Text('Sport', style: _styleButton,), Text('Curriculm', style: _styleButton),],
+              ),
+              link: 'SportCurriculum.com',
+              icon: const FaIcon(FontAwesomeIcons.running, size: 40,),
             ),
 
           ],
-        )
+        ),
+
+        const SizedBox(height: 1,),
 
       ],
     );
